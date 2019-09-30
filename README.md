@@ -15,8 +15,9 @@ Make sure to download and read thrugh some basic tutorial of Hoomd
 
 Optimizer: CMA-ES
 
+```bash
 pip install cma
-
+```
 
 ## Usage
 
