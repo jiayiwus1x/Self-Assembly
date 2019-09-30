@@ -10,6 +10,7 @@
 
 ## Prerequire package
 
+Make sure to download and read thrugh some basic tutorial of Hoomd.
 [Hoomd-Blue](http://glotzerlab.engin.umich.edu/hoomd-blue/)
 
 ## Usage
