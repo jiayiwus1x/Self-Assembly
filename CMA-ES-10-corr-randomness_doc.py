@@ -126,11 +126,9 @@ def function_2(x0, output=[], names='0', seed=np.random.randint(0, 10e8)):
 N = 10
 type_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'][:N]
 
-# tar 1
-tar_con_matrix = func.make_tar(N, type_names, mt.make_pyramid())
 
-# tar 2
-# tar_con_matrix2 = func.make_tar(N, type_names, mt.pen())
+tar_con_matrix = func.make_tar(N, type_names, mt.make_pyramid())
+# tar_con_matrix = func.make_tar(N, type_names, mt.pen())
 
 max_iter = 45
 

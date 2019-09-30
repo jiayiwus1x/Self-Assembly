@@ -33,9 +33,7 @@ def dis_int(r, rmin, rmax, epsilon):
 def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='0', ran_seed=42, run_time=4e6, N=10):
     hoomd.context.initialize("");
     hoomd.option.set_notice_level(0)
-    # timenow = str(datetime.now().strftime("%Y_%m_%d_%H_%M_%S"))
-    # ra = generate_str(4)
-    # type_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I','J','K','L','M','N','O']
+
     positions = np.array([np.arange(-N / 2, N / 2), np.arange(-N / 2, N / 2), np.arange(-N / 2, N / 2)]).T
 
     uc = hoomd.lattice.unitcell(N=len(type_names),
@@ -51,7 +49,6 @@ def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='
 
     table = md.pair.table(width=1000, nlist=nl)
 
-    # sys.exit()
     num = 0
     k = 0
     for i in type_names:
@@ -81,8 +78,8 @@ def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='
                    period=int(run_time / 200),
                    group=hoomd.group.all(),
                    overwrite=True);
-    log = hoomd.analyze.log(filename=None, quantities=['potential_energy', "kinetic_energy"],
-                            period=int(run_time / 200))
+    # log = hoomd.analyze.log(filename=None, quantities=['potential_energy', "kinetic_energy"],
+    #                         period=int(run_time / 200))
     hoomd.run(run_time, quiet=True);
 
     # U = log.query('potential_energy')
@@ -90,5 +87,4 @@ def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='
 
     frames = gsd.hoomd.open(name=datapath + "/trajectory_" + str(pro_name) + ".gsd", mode='rb')
 
-    # find minimum point
     return frames

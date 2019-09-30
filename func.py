@@ -85,7 +85,7 @@ def con_matrix_test(x):
     return b
 
 
-def int_matrix(x):
+def int_matrix(x, N=10):
     '''
     :param x:  based on interaction list
     :return: get interaction matrix
