@@ -6,7 +6,7 @@
 
 ## Description
 
-Ever wonder how the [Microbots](https://www.youtube.com/watch?v=ep2-W1X65KI >Microbots) in Big Hero 6 knew how to assemble into all those different structures? In this project, we start with a bunch of particles in a periodic box that interact with a certain <a href=https://en.wikipedia.org/wiki/Lennard-Jones_potential>Lennard-Jones potential</a>. We train the particles to adjust their potential so that they if you shake the box hard enough, they eventually form a Pyramid. You can change the ending structure into anything you want.
+Ever wonder how the [Microbots](https://www.youtube.com/watch?v=ep2-W1X65KI) in Big Hero 6 knew how to assemble into all those different structures? In this project, we start with a bunch of particles in a periodic box that interact with a certain <a href=https://en.wikipedia.org/wiki/Lennard-Jones_potential>Lennard-Jones potential</a>. We train the particles to adjust their potential so that they if you shake the box hard enough, they eventually form a Pyramid. You can change the ending structure into anything you want.
 
 ## Prerequire package
 
