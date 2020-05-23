@@ -8,7 +8,7 @@
 
 Ever wonder how the [Microbots](https://www.youtube.com/watch?v=ep2-W1X65KI) in Big Hero 6 knew how to assemble into all those different structures? In this project, we start with a bunch of particles in a periodic box that interact with a certain [Lennard-Jones potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential). We train the particles to adjust their potential so that if you shake the box, they eventually form a Pyramid. You can change the ending structure into anything you want.
 
-## Prerequire package
+## Prerequired packages
 
 <i>Shaking the box</i> is really just [Langevin dynamics](https://en.wikipedia.org/wiki/Langevin_dynamics). We use Hoomd to handle the molecular dynamics. Make sure to download and read through a basic tutorial for Hoomd:
 [Hoomd-Blue](http://glotzerlab.engin.umich.edu/hoomd-blue/)
@@ -28,7 +28,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-## Futher work
+## Further work
 
 Now that we have figured out how to get these particles to assemble into one structure, how can we teach the particles to become real Mircobots and assemble into many structures? (hint: Oscillations!)
 
