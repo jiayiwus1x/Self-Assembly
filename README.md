@@ -22,9 +22,13 @@ pip install cma
 ## Usage
 
 CMA-ES-10-corr-randomness_doc.py runs the algorithm
+
 func.py functions to create the interaction matrices of a specified structure
+
 make_target.py examples of specific structures (goals)
+
 run_hoomd.py function to simulate Langevin dynamics of the particles
+
 plots.py plotting functions
 
 ## Contributing
