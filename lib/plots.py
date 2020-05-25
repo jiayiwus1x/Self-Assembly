@@ -7,16 +7,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-import func as func
+from lib import func as func
 
 
 def sphere(r, x0, y0, z0):
     '''
     making sphere plot based on center of the sphere and radius
-    :param r:
-    :param x0:
-    :param y0:
-    :param z0:
+    :param r: radius of sphere
+    :param x0: x coordinate of center
+    :param y0: y coordinate of center
+    :param z0: z coordinate of center
     :return: x,y,z of surface of the sphere for plotting purpose
     '''
     u = np.linspace(0, 2 * np.pi, 100)
@@ -28,14 +28,15 @@ def sphere(r, x0, y0, z0):
 
 
 def plot(snap, bs, datapath, int_mat, N, type_names=[]):
+    '''
+    plotting structure create by the individual spherical particles
+    '''
     positions = snap.particles.position
 
     for i in range(3):
 
         if max(positions[:, i]) - min(positions[:, i]) > bs / 2:
-            # print('old positions',positions[:,i])
             positions[:, i] = (positions[:, i] + bs) % bs
-            # print('new positions',positions[:,i])
 
     cm = func.con_matrix(positions)
     cm_w_n = func.con_matrix_test(positions)
@@ -57,14 +58,8 @@ def plot(snap, bs, datapath, int_mat, N, type_names=[]):
 
     ax.scatter(np.mean(positions[:, 0]), np.mean(positions[:, 1]), np.mean(positions[:, 2]), s=10)
 
-    #     ax.set_xlim(-1.5 + np.mean(positions[:, 0]), 1.5 + np.mean(positions[:, 0]))
-    #     ax.set_ylim(-1.5 + np.mean(positions[:, 1]), 1.5 + np.mean(positions[:, 1]))
-    #     ax.set_zlim(-1.5 + np.mean(positions[:, 2]), 1.5 + np.mean(positions[:, 2]))
-
     ax.set_axis_off()
     ax.set_aspect('equal')
-
-    # plt.title('difference between the target is :' + title, fontsize=20)
 
     ax1 = fig.add_subplot(223, projection='3d')
     ax1.scatter(positions[:, 0], positions[:, 1], positions[:, 2], s=100, color=colors)
@@ -98,16 +93,15 @@ def plot(snap, bs, datapath, int_mat, N, type_names=[]):
     plt.colorbar()
 
     plt.savefig(plotpath_2 + '/' + timenow + '_final_config.png')
-    # plt.show()
     plt.close()
-    # sys.exit()
-
 
 def plot_con(cx, position, savedir, N, type_names=['red', 'purple', 'green', 'blue', 'orange', 'yellow']):
+    '''
+    plot the contact matrix of the structure
+    '''
     fig = plt.figure(figsize=(12, 7))
     ax = fig.add_subplot(111, projection='3d')
-    # colors = ['red', 'purple', 'green', 'blue', 'orange', 'yellow']
-
+    
     ax.scatter(position[:, 0], position[:, 1], position[:, 2], s=100, color=type_names)
     for i in range(N):
         for j in range(i + 1, N):

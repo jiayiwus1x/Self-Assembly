@@ -16,10 +16,6 @@ def make_tar(N, type_names, lists):
     for i in range(N - 1):
         tar_con_matrix1[i, lists[i]] = 1
         tar_con_matrix1[lists[i], i] = 1
-    #
-    # plt.imshow(tar_con_matrix1)
-    # plt.xticks(range(N), type_names)
-    # plt.yticks(range(N), type_names)
 
     return tar_con_matrix1
 
@@ -63,9 +59,7 @@ def con_matrix(x):
             if np.linalg.norm(x[i] - x[j], 2) <= 1.01:
                 b[i, j] = 1
                 b[j, i] = 1
-                # if np.linalg.norm(x[i] - x[j], 2) < 0.7:
-                #    print('particle overlap at', np.linalg.norm(x[i] - x[j], 2))
-                # sys.exit()
+
     return b
 
 

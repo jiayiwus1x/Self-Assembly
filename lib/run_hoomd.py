@@ -31,6 +31,21 @@ def dis_int(r, rmin, rmax, epsilon):
 
 
 def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='0', ran_seed=42, run_time=4e6, N=10):
+    '''
+    runs molecular dynamics simulation of particles inside of box
+    :param eps: list containing energies of each particle's LJ potential
+    :param temperature: noise level in the simulation (higher temperature the noisier the system)
+    :param rmin: min distance to interact
+    :param rmax: max distance to interact
+    :param bs: box size
+    :param type_names: name of the particle
+    :param datapath: directory to save
+    :param pro_name = processor name (for parallelization)
+    :param ran_seed: random seed
+    :param run_time: number of iterations
+    :param N: number of particles
+    :return: frames, a hoomd snapshot
+    '''
     hoomd.context.initialize("");
     hoomd.option.set_notice_level(0)
 
@@ -59,13 +74,11 @@ def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='
             if -len(type_names) + num != 0:
                 table.pair_coeff.set(i, j, func=dis_int, rmin=rmin, rmax=rmax, coeff=dict(epsilon=eps[k]))
                 k += 1
-                # print(i,j,k)
 
     hoomd.update.box_resize(L=bs)
     hoomd.md.integrate.mode_standard(dt=0.001);
     all = hoomd.group.all();
 
-    # print(ran_seed)
     hoomd.md.integrate.langevin(group=all, kT=temperature, seed=ran_seed);
 
     if pro_name == '0':
@@ -78,12 +91,8 @@ def run_hoomd(eps, temperature, rmin, rmax, bs, type_names, datapath, pro_name='
                    period=int(run_time / 200),
                    group=hoomd.group.all(),
                    overwrite=True);
-    # log = hoomd.analyze.log(filename=None, quantities=['potential_energy', "kinetic_energy"],
-    #                         period=int(run_time / 200))
-    hoomd.run(run_time, quiet=True);
 
-    # U = log.query('potential_energy')
-    # print(U)
+    hoomd.run(run_time, quiet=True);
 
     frames = gsd.hoomd.open(name=datapath + "/trajectory_" + str(pro_name) + ".gsd", mode='rb')
 
